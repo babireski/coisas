@@ -1,6 +1,3 @@
-// C / C++ program for Dijkstra's
-// shortest path algorithm for adjacency
-// list representation of graph
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -34,7 +31,6 @@ struct MinHeapNode* newMinHeapNode(int v,
 	return minHeapNode;
 }
 
-// A utility function to create a Min Heap
 struct MinHeap* createMinHeap(int capacity)
 {
 	struct MinHeap* minHeap =
@@ -79,17 +75,14 @@ void minHeapify(struct MinHeap* minHeap,
 
 	if (smallest != idx)
 	{
-		// The nodes to be swapped in min heap
 		struct MinHeapNode *smallestNode =
 			minHeap->array[smallest];
 		struct MinHeapNode *idxNode =
 				minHeap->array[idx];
 
-		// Swap positions
 		minHeap->pos[smallestNode->v] = idx;
 		minHeap->pos[idxNode->v] = smallest;
 
-		// Swap nodes
 		swapMinHeapNode(&minHeap->array[smallest],
 						&minHeap->array[idx]);
 
@@ -165,10 +158,10 @@ void printArr(int dist[], int n)
 void dijkstra(struct graph* graph, int src)
 {
 	
-	int V = graph->order;
-	int dist[V];	
+	int V = graph->order; //O(1)
+	int dist[V];	//O(1)
 
-	struct MinHeap* minHeap = createMinHeap(V);
+	struct MinHeap* minHeap = createMinHeap(V); //O(1)
 
 	for (int v = 0; v < V; ++v)
 	{
@@ -176,7 +169,7 @@ void dijkstra(struct graph* graph, int src)
 		minHeap->array[v] = newMinHeapNode(v,
 									dist[v]);
 		minHeap->pos[v] = v;
-	}
+	} //O(V)
 	minHeap->array[src] =
 		newMinHeapNode(src, dist[src]);
 	minHeap->pos[src] = src;
@@ -207,7 +200,7 @@ void dijkstra(struct graph* graph, int src)
 			}
 			pCrawl = pCrawl->next;
 		}
-	}
+	} //O(A)
 
 	printArr(dist, V);
 }
