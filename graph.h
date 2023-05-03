@@ -7,7 +7,7 @@
 	{
 		int node;
 		int weight;
-		edge* next;
+		struct edge* next;
 	}
 	edge;
 
