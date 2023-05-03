@@ -3,9 +3,10 @@
 graph* create(int order)
 {
 	graph *descriptor = (graph *) malloc(sizeof(graph));
-
-	descriptor -> order = order;
-	descriptor -> nodes = calloc(descriptor->order,sizeof(node));
+	descriptor->nodes = calloc(1,sizeof(node));
+	descriptor -> order = 0;
+	for(int i = 0; i < order; i += 1)
+		addNode(descriptor, NULL);
 	return descriptor;
 }
 
@@ -13,7 +14,7 @@ void addNode(graph *descriptor, void* data)
 {
 	descriptor -> order += 1;
 	descriptor -> nodes = (node *) realloc(descriptor -> nodes, descriptor -> order * sizeof(node));
-	descriptor -> nodes[descriptor -> order - 1].data = data;
+	//descriptor -> nodes[descriptor -> order - 1].data = data;
 	descriptor -> nodes[descriptor -> order - 1].degree = 0;
 	descriptor -> nodes[descriptor -> order - 1].first = NULL;
 }
