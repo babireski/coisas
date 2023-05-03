@@ -1,12 +1,11 @@
 #include "graph.h"
 
-graph* create()
+graph* create(int order)
 {
 	graph *descriptor = (graph *) malloc(sizeof(graph));
 
-	descriptor -> nodes = NULL;
-	descriptor -> order = 0;
-
+	descriptor -> order = order;
+	descriptor -> nodes = calloc(descriptor->order,sizeof(node));
 	return descriptor;
 }
 
@@ -21,7 +20,7 @@ void addNode(graph *descriptor, void* data)
 
 void addEdge(graph *descriptor, int weight, int head, int tail)
 {
-	edge *newEdge = (edge *) malloc(sizeof(edge));
+	edge *newEdge = (edge *) calloc(1,sizeof(edge));
 	newEdge -> weight = weight;
 	newEdge -> node = tail;
 	newEdge -> next = NULL;

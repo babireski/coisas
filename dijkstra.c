@@ -287,7 +287,7 @@ int main()
 {
 	// create the graph given in above figure
 	int V = 9;
-	struct graph* graph = create();
+	struct graph* graph = create(V);
 	addEdge(graph, 0, 1, 4);
 	addEdge(graph, 0, 7, 8);
 	addEdge(graph, 1, 2, 8);
