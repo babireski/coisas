@@ -1,12 +1,12 @@
 #include "graph.h"
 
-graph* create(int order)
+graph* create()
 {
 	graph *descriptor = (graph *) malloc(sizeof(graph));
-	descriptor->nodes = calloc(1,sizeof(node));
+	
+	descriptor -> nodes = calloc(1, sizeof(node));
 	descriptor -> order = 0;
-	for(int i = 0; i < order; i += 1)
-		addNode(descriptor, NULL);
+
 	return descriptor;
 }
 
