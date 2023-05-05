@@ -1,5 +1,2 @@
-.vscode/tasks.json
-a.exe
-dijkstra.exe
-.vscode/tasks.json
-.vscode/launch.json
+.vscode/
+*.exe
