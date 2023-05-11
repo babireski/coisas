@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 6
+#define TAM 7
 int *B;
 int *S;
-int p[TAM] = {1, 3, 11, 16, 19, 10};
+int p[TAM] = {0,1, 3, 11, 16, 19, 10};
 void imprimeCortes(int n)
 {
     while (n > 0)
@@ -44,6 +44,6 @@ int cBTopdown(int n)
 }
 int main()
 {
-    printf("%d\n", cBTopdown(7));
-    imprimeCortes(7);
+    printf("%d\n", cBTopdown(TAM ));
+    imprimeCortes(TAM );
 }
