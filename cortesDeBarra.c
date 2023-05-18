@@ -41,6 +41,16 @@ int cBTopdown(int n)
     }
     return cBRecTopDown(n);
 }
+int cBBottomUp(int n)
+{
+    int B1 = (int*)(malloc(sizeof(int)*n));
+    int S1= (int*)(malloc(sizeof(int)*n));
+    B1[0] = 0;
+    for(int k = 1; k <= n; ++k)
+    {
+        int lucro
+    }
+}
 int main()
 {
     printf("%d\n", cBTopdown(TAM));
