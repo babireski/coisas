@@ -1,30 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 7
+#define TAM 6
 int *B;
 int *S;
-int p[TAM] = {0,1, 3, 11, 16, 19, 10};
+int p[TAM+1] = {0,1, 3, 11, 16, 19, 10};
 void imprimeCortes(int n)
 {
-    while (n > 0)
+    for(int i = n-1; i >= 0; --i)
     {
-        printf("%d ", S[n]);
-        n += -1;
+        printf("%d ",S[i]);
     }
 }
 int cBRecTopDown(int n)
 {
     int lucro = -1;
     int valor = 0;
-    if (B[n] == -1)
+    if (B[n] == -1 && n > 0)
     {
         for (int i = 1; i <= n; i += 1)
         {
-            valor = p[i] + cBRecTopDown(n - 1);
+            valor = p[i] + cBRecTopDown(n - i);
             if (valor > lucro)
             {
                 lucro = valor;
-                S[n] = i;
+                S[n-1] = i;
             }
         }
         B[n] = lucro;
@@ -33,8 +32,8 @@ int cBRecTopDown(int n)
 }
 int cBTopdown(int n)
 {
-    B = (int *)(malloc(sizeof(int) * (n + 1)));
-    S = (int *)(malloc(sizeof(int) * (n + 1)));
+    B = (int *)(malloc(sizeof(int) * (n)));
+    S = (int *)(malloc(sizeof(int) * (n)));
     B[0] = 0;
     for (int i = 1; i <= n; i += 1)
     {
@@ -44,6 +43,6 @@ int cBTopdown(int n)
 }
 int main()
 {
-    printf("%d\n", cBTopdown(TAM ));
-    imprimeCortes(TAM );
+    printf("%d\n", cBTopdown(TAM));
+    imprimeCortes(TAM);
 }
