@@ -3,7 +3,7 @@
 #define TAM 6
 int *B;
 int *S;
-int p[TAM + 1] = {0, 1, 3, 11, 16, 19, 10};
+int p[TAM+1] = {0, 1, 3, 11, 16, 19, 10};
 void imprimeCortes(int n)
 {
     for (int i = n - 1; i >= 0; --i)
@@ -32,8 +32,8 @@ int cBRecTopDown(int n)
 }
 int cBTopdown(int n)
 {
-    B = (int *)(malloc(sizeof(int) * (n)));
-    S = (int *)(malloc(sizeof(int) * (n)));
+    B = (int *)(malloc(sizeof(int) * (n+1)));
+    S = (int *)(malloc(sizeof(int) * (n+1)));
     B[0] = 0;
     for (int i = 1; i <= n; i += 1)
     {
@@ -43,8 +43,8 @@ int cBTopdown(int n)
 }
 int cBBottomUp(int n)
 {
-    int B1[TAM];
-    int S1[TAM];
+    int B1[TAM+1];
+    int S1[TAM+1];
     int lucro;
     int valor;
     B1[0] = 0;
