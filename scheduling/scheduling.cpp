@@ -29,7 +29,7 @@ int main()
 			{
 				tim.hour = h;
 				tim.minutes = m;
-				trains.at(0).arrival = tim;
+				trains.at(i).arrival = tim;
 			}
 		}
 	}
