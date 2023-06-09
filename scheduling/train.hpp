@@ -13,20 +13,21 @@ public:
 		else
 			return false;
 	}
+	bool isLess(tTime t2)
+	{
+		return(hour < t2.hour || (hour == t2.hour && minutes < t2.minutes));
+	}
 };
 
 class train
 {
 public:
-	int platform;
 	tTime arrival;
 	tTime departure;
-	std::string print()
-	{
-		std::string ret = "Plataforma: ";
-		ret += std::to_string(platform) + " " + std::to_string(arrival.hour) + ":" + std::to_string(arrival.minutes);
-		return ret;
-	}
-};
 
+};
+bool compareTimes(train t1, train t2)
+{
+	return t1.departure.isLess(t2.departure);
+}
 #endif
