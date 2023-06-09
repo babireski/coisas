@@ -10,12 +10,14 @@ int main()
 	std::cout << "Digite o numero de trens e de plataformas\n";
 	std::cin >> n >> m;
 	trains.resize(n);
+	// initialize the trains
 	for(int i = 0; i < m; i++)
 	{
 		int h,m,p;
 		std::cout << "Digite a plataforma do trem\n";
 		std::cin >> p;
 		tTime tim;
+		trains[i].platform = p;
 		if(p > 3 || p < 1)
 		{
 			i--;
@@ -29,8 +31,9 @@ int main()
 			{
 				tim.hour = h;
 				tim.minutes = m;
-				trains.at(i).arrival = tim;
+				trains[i].arrival = tim;
 			}
+			std::cout << trains[i].print();
 		}
 	}
 

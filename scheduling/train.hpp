@@ -18,9 +18,15 @@ public:
 class train
 {
 public:
-	int plataform;
+	int platform;
 	tTime arrival;
 	tTime departure;
+	std::string print()
+	{
+		std::string ret = "Plataforma: ";
+		ret += std::to_string(platform) + " " + std::to_string(arrival.hour) + ":" + std::to_string(arrival.minutes);
+		return ret;
+	}
 };
 
 #endif
