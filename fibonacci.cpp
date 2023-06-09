@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <vector>
+using namespace std;
 double nOp = 0;
 double naiveFib(double n)
 {
@@ -21,14 +22,16 @@ double fibTopDownRec(int n, double *vet)
 double fibTopDown (int n)
 {
 	nOp++;
-	double *vet = calloc(n,sizeof(double));
+	vector<double> vet;
+	vet.resize(n);
 	vet[1] = vet[0] = 1;
-	return fibTopDownRec(n,vet);	
+	//nesse caso precisamos passar o vet.data pois queremos o conceito de ponteiros
+	return fibTopDownRec(n,vet.data());	
 }
 double fibBottomUp(int n)
 {
-	
-	double *vet = calloc(n,sizeof(double));
+	vector<double> vet;
+	vet.resize(n);
 	vet[1] = vet[0] = 1;
 	for(int i = 2; i < n; i += 1)
 	{	

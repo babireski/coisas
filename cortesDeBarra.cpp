@@ -3,9 +3,6 @@
 #include <vector>
 #define TAM 6
 using namespace std;
-// int *B = new int;
-// int *S = new int;
-// int p[TAM+1] = {0, 1, 3, 11, 16, 19, 10};
 vector<int> B;
 vector <int> S;
 vector<int> p = {0, 1, 3, 11, 16, 19, 10};
@@ -50,8 +47,6 @@ int cBTopdown(int n)
 }
 int cBBottomUp(int n)
 {
-    // int B1[TAM+1];
-    // int S1[TAM+1];
     vector<int> B1;
     vector<int> S1;
     B1.resize(n + 1);
@@ -73,10 +68,7 @@ int cBBottomUp(int n)
             B1[k] = lucro;
         }
     }
-    int ret = B1[n];
-    B1.clear();
-    S1.clear();
-    return ret;
+    return B1[n];
 }
 int main()
 {
