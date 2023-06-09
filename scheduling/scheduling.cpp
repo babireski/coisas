@@ -5,8 +5,7 @@
 using namespace std;
 int contaMaxTremDisponivel(int m, int n)
 {
-	vector<vector<train>> trains;
-	trains.resize(n);
+	vector<vector<train>> trains(3);
 	// initialize the trains
 	for (int i = 0; i < m; i++)
 	{
@@ -34,12 +33,12 @@ int contaMaxTremDisponivel(int m, int n)
 		trains[p-1].push_back(tt);
 	}
 	int ret = 0;
-	for (int i = 0; i < n; i += 1)
+	for (int i = 0; i < n; ++i)
 	{
 		ret += 1;
 		sort(trains[i].begin(), trains[i].end(), compareTimes);
 		int k = 0;
-		for (int j = 1; i < trains[i].size(); ++i)
+		for (int j = 1; j < trains[i].size(); ++j)
 		{
 			if (trains[i][k].departure.isLess(trains[i][j].arrival))
 			{
@@ -58,6 +57,6 @@ int main()
 	cin >> n;
 	cout << "Digite o numero de trens\n";
 	cin >> m;
-	cout << contaMaxTremDisponivel(m, n);
+	cout << contaMaxTremDisponivel(m, n) << '\n';
 	return 0;
 }
