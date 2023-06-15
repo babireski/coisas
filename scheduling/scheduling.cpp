@@ -7,7 +7,7 @@ int contaMaxTremDisponivel(int m, int n)
 {
 	vector<vector<train>> trains(3);
 	// initialize the trains
-	for (int i = 0; i < m; i++)
+	for (int i = 0; i < m; i++) //O(m)
 	{
 		int h, m, p;
 		cout << "Digite a plataforma do trem\n";
@@ -33,12 +33,12 @@ int contaMaxTremDisponivel(int m, int n)
 		trains[p-1].push_back(tt);
 	}
 	int ret = 0;
-	for (int i = 0; i < n; ++i)
+	for (int i = 0; i < n; ++i) //O(n)
 	{
 		ret += 1;
-		sort(trains[i].begin(), trains[i].end(), compareTimes);
+		sort(trains[i].begin(), trains[i].end(), compareTimes); //O(m * log m)
 		int k = 0;
-		for (int j = 1; j < trains[i].size(); ++j)
+		for (int j = 1; j < trains[i].size(); ++j) //O(m)
 		{
 			if (trains[i][k].departure.isLess(trains[i][j].arrival))
 			{
@@ -46,13 +46,14 @@ int contaMaxTremDisponivel(int m, int n)
 			}
 		}
 	}
+	trains.clear();
 	return ret;
 }
+//Encadeando o custos, temos O(n * m * (1 + log m))
 int main()
 {
 	// n -> nro de plataformas ; m -> nro de trens
 	int n, m;
-	vector<train> trains;
 	cout << "Digite o numero de plataformas\n";
 	cin >> n;
 	cout << "Digite o numero de trens\n";
