@@ -1,15 +1,19 @@
-#include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
+#include <vector>
 #define TAM 6
-int *B;
-int *S;
-int p[TAM+1] = {0, 1, 3, 11, 16, 19, 10};
+using namespace std;
+vector<int> B;
+vector <int> S;
+vector<int> p = {0, 1, 3, 11, 16, 19, 10};
+
 void imprimeCortes(int n)
 {
 	for (int i = n - 1; i >= 0; --i)
 	{
-		printf("%d ", S[i]);
-	}
+        cout << S[i] << " ";
+    }
+    cout << '\n';
 }
 int cBRecTopDown(int n)
 {
@@ -32,8 +36,8 @@ int cBRecTopDown(int n)
 }
 int cBTopdown(int n)
 {
-    B = (int *)(malloc(sizeof(int) * (n+1)));
-    S = (int *)(malloc(sizeof(int) * (n+1)));
+    B.resize(n + 1);
+    S.resize(n + 1);
     B[0] = 0;
     for (int i = 1; i <= n; i += 1)
     {
@@ -43,8 +47,10 @@ int cBTopdown(int n)
 }
 int cBBottomUp(int n)
 {
-    int B1[TAM+1];
-    int S1[TAM+1];
+    vector<int> B1;
+    vector<int> S1;
+    B1.resize(n + 1);
+    S1. resize(n + 1);
     int lucro;
     int valor;
     B1[0] = 0;
@@ -66,7 +72,10 @@ int cBBottomUp(int n)
 }
 int main()
 {
-    printf("Top Down: %d\n", cBTopdown(TAM));
-    printf("Bottom Up: %d\n", cBBottomUp(TAM));
+    cout << "Top Down: " << cBTopdown(TAM)<< '\n';
+    cout << "Bottom up: " << cBBottomUp(TAM) << '\n';
     imprimeCortes(TAM);
+    B.clear();
+    S.clear();
+    p.clear();
 }
