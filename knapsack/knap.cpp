@@ -1,3 +1,5 @@
+// Dupla: Elian Babireski & Pedro Vargas
+
 #include "knap.hpp"
 #include <iostream>
 #include <bits/stdc++.h>

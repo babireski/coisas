@@ -1,3 +1,5 @@
+// Dupla: Elian Babireski & Pedro Vargas
+
 #ifndef _train_hpp
 #define _train_hpp
 

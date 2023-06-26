@@ -1,3 +1,5 @@
+// Dupla: Elian Babireski & Pedro Vargas
+
 #include <iostream>
 #include <array>
 using namespace std;

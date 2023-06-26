@@ -1,54 +1,91 @@
+/* Dupla: Elian Babireski & Pedro Vargas */
+
 #include <iostream>
 #include <vector>
+
 using namespace std;
-double nOp = 0;
-double naiveFib(double n)
+
+double calls;
+
+/*
+	Naive recursive fibonacci:
+
+	T(n) ∈ Ω(φⁿ), conforme visto em aula.
+*/
+
+double fibonaive(double n)
 {
-	nOp++;
+	calls++;
+
 	if(n <= 2)
 		return 1;
-	return naiveFib(n-1) + naiveFib(n-2);
+	return fibonaive(n - 1) + fibonaive(n - 2);
 }
 
+/*
+	Top-down recursive fibonacci:
 
-double fibTopDownRec(int n, double *vet)
+	Observe que cada posição do vetor será calculada exatamente uma vez.
+	Como o cálculo de uma posição toma tempo constante caso as duas posições anteriores sejam dadas, temos que:
+	T(n) ∈ Θ(n).
+*/
+
+double topdownfibonaccirec(int n, double *vec)
 {
-	nOp++;
-	if(vet[n-1] == 0)
-		vet[n-1] = fibTopDownRec(n-1, vet) + fibTopDownRec(n-2, vet);
-	return vet[n-1];
+	calls++;
+	if(vec[n - 1] == 0)
+		vec[n - 1] = topdownfibonaccirec(n - 1, vec) + topdownfibonaccirec(n - 2, vec);
+	return vec[n - 1];
 }
 
-double fibTopDown (int n)
+double topdownfibonacci(int n)
 {
-	nOp++;
-	vector<double> vet;
-	vet.resize(n);
-	vet[1] = vet[0] = 1;
-	//nesse caso precisamos passar o vet.data pois queremos o conceito de ponteiros
-	return fibTopDownRec(n,vet.data());	
+	calls++;
+	double vec[n] = {};
+	vec[0] = vec[1] = 1;
+	return topdownfibonaccirec(n, vec);
 }
-double fibBottomUp(int n)
+
+/*
+	Bottom-up recursive fibonacci:
+
+	T(n) = (n - 2) + 2 ∈ Θ(n), conforme custos anotados abaixo.
+*/
+
+double bottomupfibonacci(int n)
 {
-	vector<double> vet;
-	vet.resize(n);
-	vet[1] = vet[0] = 1;
-	for(int i = 2; i < n; i += 1)
-	{	
-		nOp++;
-		vet[i] = vet[i-1] + vet[i-2];
+	double array[n];
+	array[1] = array[0] = 1; // 2
+	
+	for(int i = 2; i < n; i += 1) // n - 2
+	{
+		calls++;
+		array[i] = array[i - 1] + array[i - 2]; // 1
 	}
-	return vet[n-1];	
+
+	return array[n - 1];
 }
+
+/*
+	Vantagens:
+
+		Top-down: evita que os subproblemas sejam calculados mais de uma vez.
+		Bottom-up: evita que os subproblemas sejam calculados mais de uma vez e evita criar uma pilha de chamadas recursivas como o algoritmo top-down faz.
+*/
+
 int main()
 {
-	double ret = fibTopDown(45);
-	printf("TopDown: %.0lf\tops: %.0lf\n", ret, nOp);
-	nOp=0;
-	ret = fibBottomUp(45);
-	printf("BottomUp: %.0lf\tops: %.0lf\n", ret, nOp);
-	nOp=0;
-	ret = naiveFib(45);
-	printf("Ingenuo: %.0lf\tops: %.0lf\n", ret,nOp);
+	calls = 0;
+	double ret = topdownfibonacci(45);
+	printf("Top-down: %.0lf\tCalls: %.0lf\n", ret, calls);
+	
+	calls = 0;
+	ret = bottomupfibonacci(45);
+	printf("Bottom-up: %.0lf\tCalls: %.0lf\n", ret, calls);
+	
+	calls = 0;
+	ret = fibonaive(45);
+	printf("Naive: %.0lf\tCalls: %.0lf\n", ret, calls);
+	
 	return 0;
 }

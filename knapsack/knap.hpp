@@ -1,3 +1,5 @@
+// Dupla: Elian Babireski & Pedro Vargas
+
 #ifndef _knap_hpp
 #define _knap_hpp
 #include <vector>

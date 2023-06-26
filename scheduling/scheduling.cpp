@@ -1,3 +1,5 @@
+// Dupla: Elian Babireski & Pedro Vargas
+
 #include <iostream>
 #include "train.hpp"
 #include <vector>
@@ -49,7 +51,9 @@ int contaMaxTremDisponivel(int m, int n)
 	trains.clear();
 	return ret;
 }
+
 //Encadeando o custos, temos O(n * m * (1 + log m))
+
 int main()
 {
 	// n -> nro de plataformas ; m -> nro de trens
