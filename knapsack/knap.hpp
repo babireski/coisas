@@ -18,6 +18,7 @@ public:
     double value;
     double ratio;
 };
+
 class knap
 {
 public:
@@ -31,10 +32,12 @@ public:
     double cap;
 
 };
-//Funcao de compare, para ser usado com a funcao *sort* padrao do cpp
+
+// Função de compare, para ser usado com a funcao *sort* padrao do cpp
 //nesse caso queremos ordenar de maneira crescente
+
 bool compareItem(item e1, item e2)
 {
-    return (e1.ratio < e2.ratio);
+    return e1.ratio < e2.ratio;
 }
 #endif

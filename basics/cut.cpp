@@ -6,12 +6,13 @@
 
 using namespace std;
 
-vector<int> B;
-vector<int> S;
-vector<int> P = {0, 1, 3, 11, 16, 19, 10};
+vector<int> B; /* Tamanho de corte */
+vector<int> S; /* Solução */
+vector<int> P = {0, 1, 3, 11, 16, 19, 10}; /* Preços */
 
 /*
-
+	Observe que a recursão, dentro do laço, tem uma função de custo T(n) = n
+	e o for de fora também, portanto, a complexidade resultante será O(n²)
 */
 
 int topdowncutrecursive(int n)
@@ -21,9 +22,10 @@ int topdowncutrecursive(int n)
 
 	if (B[n] == -1 && n > 0)
 	{
-		for (int i = 1; i <= n; i += 1)
+		for (int i = 1; i <= n; i += 1) // O(n)
 		{
-			valor = P[i] + topdowncutrecursive(n - i);
+			valor = P[i] + topdowncutrecursive(n - i); // O(n)
+
 			if (valor > lucro)
 			{
 				lucro = valor;
@@ -51,7 +53,9 @@ int topdowncut(int n)
 }
 
 /*
+	Observe que:
 
+	T(n) = Σ(i ∈ [1, n]) Σ(k ∈ [i, k]) 1 ∈ O(n²)
 */
 
 int bottomupcut(int n)
@@ -67,11 +71,11 @@ int bottomupcut(int n)
 	
 	B1[0] = 0;
 
-	for (int k = 1; k <= n; ++k)
+	for (int k = 1; k <= n; ++k) /* n */
 	{
 		lucro = -1;
 	
-		for (int i = 1; i <= k; ++i)
+		for (int i = 1; i <= k; ++i) /* n */
 		{
 			valor = P[i] + B1[k - i];
 	
@@ -90,8 +94,9 @@ int bottomupcut(int n)
 
 /*
 	Vantagens:
-		Top-down:
-		Bottom-up:
+
+		Top-down: evita que os subproblemas sejam calculados mais de uma vez.
+		Bottom-up: evita que os subproblemas sejam calculados mais de uma vez e evita criar uma pilha de chamadas recursivas como o algoritmo top-down faz.
 */
 
 int main()

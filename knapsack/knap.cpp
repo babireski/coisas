@@ -1,9 +1,23 @@
 // Dupla: Elian Babireski & Pedro Vargas
 
 #include "knap.hpp"
+
 #include <iostream>
 #include <bits/stdc++.h>
+
 using namespace std;
+
+/*
+	Considerando que a entrada está ordenada, temos:
+
+	T(n) = n ∈ O(n), pois basta iterar sobre todos os itens.
+
+	Considerando, entretanto, a necessidade de ordenação, esta precisa ser levada em conta.
+	Como na implementação abaixo usamos o mergesort, que possui complexidade de tempo O(n log n), temos que:
+
+	T(n) = n log n + n ∈ O(n log n).
+*/
+
 void mochilaFrac(knap &k, vector<item> items)
 {
     for(int i = items.size()-1; i >= 0; i--)
@@ -13,6 +27,7 @@ void mochilaFrac(knap &k, vector<item> items)
             k.items[i] = 1;
             k.cap -= items[i].weight;
         }
+
         else
         {
             k.items[i] = (k.cap/items[i].weight);
